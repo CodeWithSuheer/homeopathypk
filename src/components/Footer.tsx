@@ -17,7 +17,7 @@ const Footer = () => {
             <div className="flex items-center space-x-2">
               <div className="p-2 rounded-lg group-hover:scale-105 transition-transform">
                 <img
-                  src="/assets/logo2.jpeg"
+                  src="/assets/logo4.jpeg"
                   alt="logo"
                   className="size-10 sm:size-16 rounded-lg"
                 />

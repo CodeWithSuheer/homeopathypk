@@ -36,7 +36,7 @@ const Header = () => {
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-1 group">
-            <div className="p-2 rounded-lg group-hover:scale-105 transition-transform">
+            <div className="p-1 rounded-lg group-hover:scale-105 transition-transform">
               <img
                 src="/assets/logo1.png"
                 alt="logo"
