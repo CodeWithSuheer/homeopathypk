@@ -2,44 +2,69 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Phone, Star, Award, Leaf, Shield } from "lucide-react";
 import { PHONE_NUMBER } from "../../constants/constant";
+import { useState } from "react";
 
 const FeaturedProducts = () => {
+  const [expandedDescriptions, setExpandedDescriptions] = useState<{
+    [key: number]: boolean;
+  }>({});
+
+  const toggleDescription = (productId: number) => {
+    setExpandedDescriptions((prev) => ({
+      ...prev,
+      [productId]: !prev[productId],
+    }));
+  };
+
+  const truncateText = (text: string, maxLines: number = 2) => {
+    const words = text.split(" ");
+    const wordsPerLine = 6; // Approximate words per line
+    const maxWords = maxLines * wordsPerLine;
+
+    if (words.length <= maxWords) return text;
+    return words.slice(0, maxWords).join(" ") + "...";
+  };
   const products = [
     {
       id: 1,
-      name: "Caress Hair Oil",
+      name: "CARESS HAIR OIL",
       description:
-        "Pure, potent, and gentle hair care solution with natural ingredients. Cleanses and nourishes the scalp without harsh chemicals.",
+        "Richly infused with pure essential oils and rare herbs, this oil deeply nourishes every strand. Whether you’re battling thinning hair, dullness, or scalp issues—this oil is your complete repair therapy.",
       image: "/assets/prod/prod1.jpeg",
       features: ["No Hairfall", "No Breakage", "No Frizz"],
       badge: "Top Seller",
-      category: "Hair Care",
+      category: "Pure Oils, Pure Confidence.",
+      price: "Rs. 1200",
     },
     {
       id: 2,
-      name: "Nutriboost Powder",
+      name: "NUTRIBOOST",
       description:
-        "No.1 hair growth oil with natural ingredients. Stops hair fall, adds shine and volume while boosting natural hair growth.",
+        "This bowl is your daily boost in every bite with antioxidants and slow-release energy. It lifts up your mood, satisfies your hunger, and supports your body.",
       image: "/assets/prod/prod2.jpeg",
       features: ["Stops Hair Fall", "Adds Volume", "Natural Growth"],
       badge: "Best Seller",
-      category: "Hair Treatment",
+      category: "Tasty Meets Trusty",
+      price: "Rs. 1500",
+      sale_price: "Rs. 1200",
     },
     {
       id: 3,
-      name: "Hair Serum",
+      name: "CARESS HAIR SERUM",
       description:
-        "Comprehensive collection of essential homeopathic remedies for common ailments. Carefully selected by Dr. Shumaila Tanveer.",
+        "This nourishing hair serum enriched with the restorative powers, feels incredibly light on the skin, is your all-in-one solution for combating dryness, reducing breakage, and reviving lifeless strands.",
       image: "/assets/prod/prod3.jpeg",
       features: ["Complete Kit", "Expert Selected", "Natural Healing"],
       badge: "Exclusive",
-      category: "Homeopathy",
+      category: "Advanced Nutrition for Every Strand",
+      price: "Rs. 1200",
+      sale_price: "Rs. 1000",
     },
   ];
 
   return (
     <section className="py-20 bg-gradient-to-br from-neutral-50 to-primary-50/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -91,7 +116,7 @@ const FeaturedProducts = () => {
               </div>
 
               {/* Product Image */}
-              <div className="relative h-[30rem] overflow-hidden">
+              <div className="relative h-[25rem] overflow-hidden">
                 <img
                   src={product.image}
                   alt={product.name}
@@ -103,8 +128,7 @@ const FeaturedProducts = () => {
 
               {/* Product Content */}
               <div className="p-6">
-                {/* Category */}
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex gap-2 sm:items-center flex-col-reverse sm:flex-row justify-start items-start sm:justify-between mb-3">
                   <span className="text-xs font-semibold text-primary-600 bg-primary-50 px-2 py-1 rounded-full">
                     {product.category}
                   </span>
@@ -119,14 +143,49 @@ const FeaturedProducts = () => {
                 </div>
 
                 {/* Product Name */}
-                <h3 className="text-xl font-bold text-neutral-900 mb-3 group-hover:text-primary-600 transition-colors duration-300">
+                <h3 className="text-xl font-bold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors duration-300">
                   {product.name}
                 </h3>
 
+                {/* Price Section */}
+                <div className="mb-2 flex items-center space-x-2">
+                  {product.sale_price ? (
+                    <>
+                      <span className="text-lg font-bold text-primary-600">
+                        {product.sale_price}
+                      </span>
+                      <span className="text-sm text-neutral-400 line-through">
+                        {product.price}
+                      </span>
+                      <span className="ml-2 px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-xs font-semibold">
+                        Sale
+                      </span>
+                    </>
+                  ) : (
+                    <span className="text-lg font-bold text-neutral-900">
+                      {product.price}
+                    </span>
+                  )}
+                </div>
+
                 {/* Description */}
-                <p className="text-neutral-600 text-sm leading-relaxed mb-4">
-                  {product.description}
-                </p>
+                <div className="mb-4">
+                  <p className="text-neutral-600 text-sm leading-relaxed">
+                    {expandedDescriptions[product.id]
+                      ? product.description
+                      : truncateText(product.description)}
+                  </p>
+                  {product.description.split(" ").length > 12 && (
+                    <button
+                      onClick={() => toggleDescription(product.id)}
+                      className="text-primary-600 text-sm font-medium hover:text-primary-700 transition-colors duration-200 mt-2"
+                    >
+                      {expandedDescriptions[product.id]
+                        ? "Show less"
+                        : "Show more"}
+                    </button>
+                  )}
+                </div>
 
                 {/* Action Buttons */}
                 <div className="space-y-3">
