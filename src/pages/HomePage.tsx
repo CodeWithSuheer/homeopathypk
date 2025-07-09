@@ -4,6 +4,7 @@ import ServicesOverview from "../components/home/ServicesOverview";
 import ExpertiseHighlights from "../components/home/ExpertiseHighlights";
 import ContactInfo from "../components/home/ContactInfo";
 import FAQSection from "../components/home/FAQSection";
+import FeaturedProducts from "../components/home/FeaturedProducts";
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
       <HeroSection />
       <AboutPreview />
       <ServicesOverview />
+      <FeaturedProducts />
       <ExpertiseHighlights />
       <ContactInfo />
       <FAQSection />
