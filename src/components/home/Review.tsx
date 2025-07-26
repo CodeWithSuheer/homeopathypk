@@ -54,9 +54,9 @@ const data = [
 const Reviews = () => {
   return (
     <>
-      <section className="py-14 sm:py-20 bg-[#F0FDFA]">
+      <section className="py-14 sm:py-16 bg-[#F0FDFA]">
         <div className="max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
-          <h2 className="mb-2.5 playfair text-center text-4xl sm:text-5xl font-bold">
+          <h2 className="text-3xl lg:text-4xl text-center font-bold text-neutral-900 mb-4">
             What our Client Says
           </h2>
         </div>

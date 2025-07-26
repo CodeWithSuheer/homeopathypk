@@ -274,7 +274,7 @@ const FeaturedProducts = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/consultation"
-                className="inline-flex items-center justify-center space-x-2 bg-white text-primary-600 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center justify-center space-x-2 bg-white text-primary-600 px-6 sm:px-8 py-4 rounded-full font-semibold text-[15px] sm:text-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
                 <span>Book Consultation</span>
                 <ArrowRight className="h-5 w-5" />
