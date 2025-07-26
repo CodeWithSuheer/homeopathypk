@@ -66,7 +66,7 @@ const Reviews = () => {
           // pauseOnClick
           // pauseOnHover
           direction="left"
-          className="testimonial_marquee mt-14"
+          className="testimonial_marquee mt-5 sm:mt-14"
         >
           {data.map((data, i) => (
             <article
