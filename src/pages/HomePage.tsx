@@ -5,6 +5,7 @@ import ExpertiseHighlights from "../components/home/ExpertiseHighlights";
 import ContactInfo from "../components/home/ContactInfo";
 import FAQSection from "../components/home/FAQSection";
 import FeaturedProducts from "../components/home/FeaturedProducts";
+import Reviews from "../components/home/Review";
 
 const HomePage = () => {
   return (
@@ -15,6 +16,7 @@ const HomePage = () => {
       <FeaturedProducts />
       <ExpertiseHighlights />
       <ContactInfo />
+      <Reviews />
       <FAQSection />
     </div>
   );
